@@ -20,6 +20,8 @@ Types of cloud computing
 - over the cloud - public cloud (aws)
 - on premises- private cloud (Vagrant, virtual box)
 - hybrid cloud (50/50, example: banks, on-premises datacenter  with a public cloud, allowing data and applications to be shared between them.)
+- ![image](https://user-images.githubusercontent.com/47173937/115534871-22563f00-a290-11eb-825e-1aca97a2215c.png)
+
 
 - SaaS - software as a service
 - Infrastructure as a service ( IaaS )
