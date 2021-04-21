@@ -28,4 +28,4 @@ Types of cloud computing
 - scale out - (add new server) Scaling out a microservices application can be as simple as spinning up a new container running a webserver app and adding it to the load balancer pool. When scaling out the idea is that it is possible to add identical services to a system to increase performance. 
 - scale up - (make server bigger) the goal is to increase the resources supporting your application to reach or maintain adequate performance. In a hardware-centric world, this might mean adding a larger hard drive to a computer for increased storage capacity. 
 
-- 
+- ![image](https://user-images.githubusercontent.com/47173937/115534485-bd024e00-a28f-11eb-9cf2-a17a88f45ade.png)
