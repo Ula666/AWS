@@ -15,3 +15,17 @@
 - Flexible : AWS enables you to select the operating system, programming language, web application platform, database, and other services you need. With AWS, you receive a virtual environment that lets you load the software and services your application requires. 
 - Cost-Effective : You pay only for the compute power, storage, and other resources you use, with no long-term contracts or up-front commitments.
 - Secure : AWS utilizes an end-to-end approach to secure and harden our infrastructure, including physical, operational, and software measures.
+
+Types of cloud computing
+- over the cloud - public cloud (aws)
+- on premises- private cloud (Vagrant, virtual box)
+- hybrid cloud (50/50, example: banks, on-premises datacenter  with a public cloud, allowing data and applications to be shared between them.)
+
+- SaaS - software as a service
+- Infrastructure as a service ( IaaS )
+- AI as a service ( AIaaS )
+
+- scale out - (add new server) Scaling out a microservices application can be as simple as spinning up a new container running a webserver app and adding it to the load balancer pool. When scaling out the idea is that it is possible to add identical services to a system to increase performance. 
+- scale up - (make server bigger) the goal is to increase the resources supporting your application to reach or maintain adequate performance. In a hardware-centric world, this might mean adding a larger hard drive to a computer for increased storage capacity. 
+
+- 
