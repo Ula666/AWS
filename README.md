@@ -59,7 +59,13 @@
 - AWS Local Zones place compute, storage, database, and other select AWS services closer to end-users.
 
 ### High availablity 
-- each AWS Region has multiple AZs.  customers who care about the availability and performance of their applications want to deploy these applications across multiple AZs in the same region for fault tolerance and low latency. AZs are connected to each other with fast, private fiber-optic networking, enabling you to easily architect applications that automatically fail-over between AZs without interruption.
+- Highly available systems are reliable in the sense that they continue operating even when critical components fail. They are also resilient, meaning that they are able to simply handle failure without service disruption or data loss, and seamlessly recover from such failure.
+
+###Elements for a complete High availability system
+- Redundancy: Ensuring that critical system components have another identical component with the same data can take over in case of failure.
+- Monitoring: Identifying problems in production systems that may disrupt or degrade service.
+- Failover: The ability to switch from an active system component to a redundant component in case of failure, imminent failure, degraded performance, or functionality.
+- Failback: The ability to switch back from a redundant component t
 
 ### Monolithic Architecture
 - Monolith means composed all in one piece. The Monolithic application describes a single-tiered software application in which different components combined into a single program from a single platform.
