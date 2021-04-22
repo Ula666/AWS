@@ -61,7 +61,7 @@
 ### High availablity 
 - Highly available systems are reliable in the sense that they continue operating even when critical components fail. They are also resilient, meaning that they are able to simply handle failure without service disruption or data loss, and seamlessly recover from such failure.
 
-###Elements for a complete High availability system
+### Elements for a complete High availability system
 - Redundancy: Ensuring that critical system components have another identical component with the same data can take over in case of failure.
 - Monitoring: Identifying problems in production systems that may disrupt or degrade service.
 - Failover: The ability to switch from an active system component to a redundant component in case of failure, imminent failure, degraded performance, or functionality.
