@@ -87,5 +87,9 @@
 - Extra level of security
 
 ### AMI
--  Provides information to lounch instance needs to work after security
+-  Provides information to launch instance needs to work after security
+
+
+ ![image](https://user-images.githubusercontent.com/47173937/115889962-5b3b1300-a44c-11eb-8b32-54b8ad967f68.png)
+
 
