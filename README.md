@@ -81,3 +81,11 @@
 - It is used in web based applications.
 - It has three layers viz. client layer, business layer and data layer.
 - Adv: improves data integrity, It offers higher level of security as client does not have access to the database directly.
+
+
+### NACL 
+- Extra level of security
+
+### AMI
+-  Provides information to lounch instance needs to work after security
+
