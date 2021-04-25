@@ -1,5 +1,5 @@
 
-## What is cloud computing
+### What is cloud computing
 - The cloud computing are services that are accessed over the internet. Cloud servers are located inside data centers around the world and allow for on-demand availability of computer system resources, especially data storage and computing power, without direct active management by the user.  
 ### 3 benefits
 - Cost saving is one of the biggest Cloud Computing benefits. It helps you to save money as it does not need any physical hardware investments.
@@ -9,7 +9,7 @@
 - AWS, Microsoft Azure, Google Cloud Platform
 - Website Hosting – This is one of the most common business-oriented uses of cloud computing. While companies can host their web presences on physical servers or single cloud servers, the true scale and ability to grow comes when these business start enabling transactions or other web-based services within their hosted environments.
 
-## What is AWS
+### What is AWS
 - Amazon Web Services (AWS) is a cloud service provider. AWS offers a wide range of cloud services, from basic hosting and deployment to analytics, blockchain, machine learning, and more. 
 ### 3 advantages of AWS/who is using AWS in the industry (Netflix, Twitch, LinkedIn, Facebook)
 - Flexible : AWS enables you to select the operating system, programming language, web application platform, database, and other services you need. With AWS, you receive a virtual environment that lets you load the software and services your application requires. 
@@ -21,7 +21,6 @@
 - on premises- private cloud (Vagrant, virtual box)
 - hybrid cloud (50/50, example: banks, on-premises datacenter  with a public cloud, allowing data and applications to be shared between them.)
 - ![image](https://user-images.githubusercontent.com/47173937/115534871-22563f00-a290-11eb-825e-1aca97a2215c.png)
-
 
 - SaaS - software as a service
 - Infrastructure as a service ( IaaS )
@@ -51,7 +50,6 @@
 ### VPC
 - Virtual private Cloud - A VPC gives an enterprise the ability to define and control a virtual network that is logically isolated from all other public cloud tenants, creating a private, secure place on the public cloud.
 
-
 ### Awailablity zones:
 - https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
 - Region is a physical location around the world where we cluster data centers. We call each group of logical data centers an Availability Zone.
@@ -66,7 +64,7 @@
 - Redundancy: Ensuring that critical system components have another identical component with the same data can take over in case of failure.
 - Monitoring: Identifying problems in production systems that may disrupt or degrade service.
 - Failover: The ability to switch from an active system component to a redundant component in case of failure, imminent failure, degraded performance, or functionality.
-- Failback: The ability to switch back from a redundant component t
+- Failback: The ability to switch back from a redundant component 
 
 ### Monolithic Architecture
 - Monolith means composed all in one piece. The Monolithic application describes a single-tiered software application in which different components combined into a single program from a single platform.
@@ -83,13 +81,11 @@
 - It has three layers viz. client layer, business layer and data layer.
 - Adv: improves data integrity, It offers higher level of security as client does not have access to the database directly.
 
-
 ### NACL 
 - Extra level of security
 
 ### AMI
 -  Provides information to launch instance needs to work after security
-
 
  ![image](https://user-images.githubusercontent.com/47173937/115889962-5b3b1300-a44c-11eb-8b32-54b8ad967f68.png)
 
@@ -101,20 +97,23 @@
 
 
 
-## AWS Task (Two tier architecture deployment):
- 1. Create VPC:
+# AWS Task (Two tier architecture deployment):
+ **1. Create VPC:**
  - In AWS > VPC > Create VPC
- - VPC Settings: name- ex.:eng84_ula_vpc, ipv4- ex.:(`66.66.0.0/16` - first two numbers supposed to be unique, and then two next are 0s)
- 2. Create Internet Gateway:
+ - VPC Settings: name- ex.:eng84_ula_vpc, ipv4- ex.:(`66.66.0.0/16` - first two numbers supposed to be unique, and then two next are 0s)   
+ 
+ **2. Create Internet Gateway:**
  - In VPC > Internet Gateways > Create Internet Gateway 
  - Internet Gateway Settings: name- ex.: eng84_ula_internet_gateway
- - After that we have to find out gateway from the list, right-click and choose "Attach to VPC"
-3. Create subnet:
+ - After that we have to find out gateway from the list, right-click and choose "Attach to VPC"  
+ 
+ **3. Create subnet:**
 - VPC > Subnets > Create Subnet
 - In Create subnet page we have to specify the name of a subnet ex.: `eng84_ula_public_subnet`, and the IPv4 CIDR block, which has to be slightly different from VPC IPv4 CIDRs, ex.: `66.66.1.0/24` 
 The first 2 numbers of this subnet must be the same as VPC's, the third number must be unique, it can't be the same as another subnet you have created. The fourth number must be 0. We have to also use /24.
-- Next we have to repeat this step to create private subnet with different IPv4 CIDR block ex.: `66.66.10.0/24`
-4. Routing tables:
+- Next we have to repeat this step to create private subnet with different IPv4 CIDR block ex.: `66.66.10.0/24`  
+
+ **4. Routing tables:**
 - In VPC > Route Tables 
 - From the list of route tables find the ona that is attached to Your VPC. (Click on one and check the VPC name in the Summary)
 - Rename your route table, ex.: `eng84_ula_public_rt`
@@ -127,8 +126,9 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - VPC > Route Table > Create route table
 - attach the new rote table to your VPC (key: Name, Value: `eng84_ula_routeTable_db`) > Save
 - From the list of route tables, select your new route table > choose Subnet Associations > Edit Subnet Associations
-- Select your private subnet and Save
-5. Now we will create new EC2 instances:
+- Select your private subnet and Save  
+
+ **5. Now we will create new EC2 instances:**
 - Go to EC2 > Instances > Instances > Launch Instances
 - From the list of AMI choose `Ubuntu Server 16.04 LTS (HMV), SSD Volume Type`
 - On the next page choose `t2 micro` and click Next
@@ -145,10 +145,10 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
  - Now we have to create another Instance for database:
  - Create new Instance just like we did for the app instance( pages: Step 1 and Step 2 are the same), then on the Step 3 page make sure to set Subnet to your Private subnet
 - Pages for Step 4 and 5 exactly the same as for app, only change the tag name to ex.: `eng84_ula_db`
-- On the Step 6 page: Security Group Name: ex.: `eng84_ula_private_sg`, SSH the same, but the other one has to be Type: All traffic - Protocol:All - Por:0-65535 - Source:Custom with IP:(your public subnet IPv4) ex.:`66.66.1.0/24` - Description: Access from the public subnet
-- Next steps are exactly the same as for the app
+- On the Step 6 page: Security Group Name: ex.: `eng84_ula_private_sg`, SSH the same, but the other one has to be Type: All traffic - Protocol:All - Port:0-65535 - Source:Custom with IP:(your public subnet IPv4) ex.:`66.66.1.0/24` - Description: Access from the public subnet
+- Next steps are exactly the same as for the app  
 
-6. Test the connection:
+ **6. Test the connection:**
 
 
 
