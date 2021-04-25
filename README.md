@@ -149,6 +149,36 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - Next steps are exactly the same as for the app  
 
  **6. Test the connection:**
+ - Now we have to connect to the app
+ - Select your App instance > click Connect at the top
+ - Copy the Example command which starts with ssh -i
+ - Now open a Git Bash Shell and navigate to `~/.ssh` folder using `cd .ssh` command
+ - Paste the command you just copied
+ - Type Yes when asked a question
+ - Now you should be connected to your App(Ubuntu16.04)
+ 
+ - Now let's connect to you database instance, we will have to use proxy ssh
+ - From the list of instances choose your App instance and go to Networking 
+ - Copy the Public IPv4 address and save it somewhere
+ - Next choose you database instance and copy the Private IPv4 address and save it somewhere 
+ - Now using those two values(IPs) you can connect to your database
+ - `ssh -i ~/.ssh/DevOpsStudent.pem -o ProxyCommand="ssh -i ~/.ssh/DevOpsStudent.pem -W %h:%p ubuntu@app_public_ip" ubuntu@private_ip_of_db` 
+ - You should now be connected 
+ 
+ **7. Upate the Database Instance**
+ - Firstly we have to give the database access to the internet
+ - EC2 > Security Groups > Your Private Security Group Name
+ - Inbound Rules > Edit Inbound Rules
+ - In the Edit section add new rule
+ - Type:HTTP - Source:Custom- IP:0.0.0.0/0 > Save
+ - Go to the VPC > Route Tables > Select your Public route table
+ - Subnet Addociations > Edit Subnet Associations
+ - In the edit section select BOTH subnets and Save
+ - Now you should be able to connect to you database instance same as you did with app instance
+ - `ssh -i "your_pem_file.pem" ubuntu@db_public_ip`
+ - set up all things you need for your db, then change back those settings restart the db instance  
+
+
 
 
 
