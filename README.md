@@ -58,7 +58,8 @@
 - An Availability Zone (AZ) is one or more discrete data centers with redundant power, networking, and connectivity in an AWS Region. 
 - AWS Local Zones place compute, storage, database, and other select AWS services closer to end-users.
 
-### High availablity 
+### How to make your app High availablity 
+- Add multiple regions and providers in case of failure it redirect the trafic 
 - Highly available systems are reliable in the sense that they continue operating even when critical components fail. They are also resilient, meaning that they are able to simply handle failure without service disruption or data loss, and seamlessly recover from such failure.
 
 ### Elements for a complete High availability system
@@ -91,5 +92,66 @@
 
 
  ![image](https://user-images.githubusercontent.com/47173937/115889962-5b3b1300-a44c-11eb-8b32-54b8ad967f68.png)
+
+### Stateful filtering 
+- tracks the origin of a request and can automatically allow the reply to the request to be returned to the originating computer. For example, a stateful filter that allows inbound traffic to tcp port 80 on a webserver will allow the return traffic, usually on a high numbered port (e.g. destination tcp port 63,912) to pass through the stateful filter between the client and the webserver. The filtering device maintains a state table that tracks the origin and destination port numbers and IP addresses. Only one rule is required on the filtering device: allow traffic inbound to the web server on tcp port 80).
+- Security groups are stateful. This means that if they allow a request to come in they will always lets the response back out. Even if the outbound rules don't allow it. The outbound rules only apply to request made FROM your machine.
+
+- NACLs are stateless. You have to have rules to allow the request to come in and to allow the response to go back out.
+
+
+
+## AWS Task (Two tier architecture deployment):
+ 1. Create VPC:
+ - In AWS > VPC > Create VPC
+ - VPC Settings: name- ex.:eng84_ula_vpc, ipv4- ex.:(`66.66.0.0/16` - first two numbers supposed to be unique, and then two next are 0s)
+ 2. Create Internet Gateway:
+ - In VPC > Internet Gateways > Create Internet Gateway 
+ - Internet Gateway Settings: name- ex.: eng84_ula_internet_gateway
+ - After that we have to find out gateway from the list, right-click and choose "Attach to VPC"
+3. Create subnet:
+- VPC > Subnets > Create Subnet
+- In Create subnet page we have to specify the name of a subnet ex.: `eng84_ula_public_subnet`, and the IPv4 CIDR block, which has to be slightly different from VPC IPv4 CIDRs, ex.: `66.66.1.0/24` 
+The first 2 numbers of this subnet must be the same as VPC's, the third number must be unique, it can't be the same as another subnet you have created. The fourth number must be 0. We have to also use /24.
+- Next we have to repeat this step to create private subnet with different IPv4 CIDR block ex.: `66.66.10.0/24`
+4. Routing tables:
+- In VPC > Route Tables 
+- From the list of route tables find the ona that is attached to Your VPC. (Click on one and check the VPC name in the Summary)
+- Rename your route table, ex.: `eng84_ula_public_rt`
+- Next we want to add internet access for this subnet, next to Summary you will find Routes
+- Routes > Edit routes
+- Add new route `0.0.0.0/0` with Target as your Internet gateway `igw...` and Save
+- Go back to the route table page and select yur route table again and select Subnet Associations > Edit Subnet Associations
+- Select your Public subnet and Save
+- After that we have to create a new route table for the database with no internet access
+- VPC > Route Table > Create route table
+- attach the new rote table to your VPC (key: Name, Value: `eng84_ula_routeTable_db`) > Save
+- From the list of route tables, select your new route table > choose Subnet Associations > Edit Subnet Associations
+- Select your private subnet and Save
+5. Now we will create new EC2 instances:
+- Go to EC2 > Instances > Instances > Launch Instances
+- From the list of AMI choose `Ubuntu Server 16.04 LTS (HMV), SSD Volume Type`
+- On the next page choose `t2 micro` and click Next
+- On the Configure Instance Details page, select Network and choose your VPC's name
+- In the Subnet section choose your Public subnet
+- In the Auto-assign Public IP section choose Enable and click Next
+- Add Storage page should be left on default 
+- On Add Tags page create a tag with sensible name ex.: `eng84_ula_app` and click Next
+- On Configure Security Group page set a Security Group Name ex.: `eng84_ula_public_sg` and you can add description
+- We want two types:
+- Firstly The SSH must be set to TCP, port: 22, Source: My IP, description ex.: admin access
+- HTTP - TCP - 80 - Custom - 0.0.0.0/0, ::0, Description ex.: http access
+- On the final page click Launch and select `Choose an existing key pair` and select `DevOpsStudent` > Launch Instances
+ - Now we have to create another Instance for database:
+ - Create new Instance just like we did for the app instance( pages: Step 1 and Step 2 are the same), then on the Step 3 page make sure to set Subnet to your Private subnet
+- Pages for Step 4 and 5 exactly the same as for app, only change the tag name to ex.: `eng84_ula_db`
+- On the Step 6 page: Security Group Name: ex.: `eng84_ula_private_sg`, SSH the same, but the other one has to be Type: All traffic - Protocol:All - Por:0-65535 - Source:Custom with IP:(your public subnet IPv4) ex.:`66.66.1.0/24` - Description: Access from the public subnet
+- Next steps are exactly the same as for the app
+
+6. Test the connection:
+
+
+
+
 
 
