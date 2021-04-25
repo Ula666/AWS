@@ -81,8 +81,8 @@
 - It has three layers viz. client layer, business layer and data layer.
 - Adv: improves data integrity, It offers higher level of security as client does not have access to the database directly.
 
-### NACL 
-- Extra level of security
+### NACL (Network Access Control List)
+- Extra level of security. Is an additional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets.
 
 ### AMI
 -  Provides information to launch instance needs to work after security
@@ -90,9 +90,8 @@
  ![image](https://user-images.githubusercontent.com/47173937/115889962-5b3b1300-a44c-11eb-8b32-54b8ad967f68.png)
 
 ### Stateful filtering 
-- tracks the origin of a request and can automatically allow the reply to the request to be returned to the originating computer. For example, a stateful filter that allows inbound traffic to tcp port 80 on a webserver will allow the return traffic, usually on a high numbered port (e.g. destination tcp port 63,912) to pass through the stateful filter between the client and the webserver. The filtering device maintains a state table that tracks the origin and destination port numbers and IP addresses. Only one rule is required on the filtering device: allow traffic inbound to the web server on tcp port 80).
+- tracks the origin of a request and can automatically allow the reply to the request to be returned to the originating computer.
 - Security groups are stateful. This means that if they allow a request to come in they will always lets the response back out. Even if the outbound rules don't allow it. The outbound rules only apply to request made FROM your machine.
-
 - NACLs are stateless. You have to have rules to allow the request to come in and to allow the response to go back out.
 
 
@@ -156,6 +155,7 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
  - Paste the command you just copied
  - Type Yes when asked a question
  - Now you should be connected to your App(Ubuntu16.04)
+ - Inside the Ubuntu APP machine: (`sudo apt-get update -y` and `sudo apt-get upgrade -y`, `sudo apt-get install nginx` to install Nginx, `sudo systemctl status nginx` to check if it was installed)  
  
  - Now let's connect to you database instance, we will have to use proxy ssh
  - From the list of instances choose your App instance and go to Networking 
@@ -178,7 +178,8 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
  - `ssh -i "your_pem_file.pem" ubuntu@db_public_ip`
  - set up all things you need for your db, then change back those settings restart the db instance  
 
-
+**8. Add NACL:**
+- 
 
 
 
