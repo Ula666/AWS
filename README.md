@@ -141,11 +141,14 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - Firstly The SSH must be set to TCP, port: 22, Source: My IP, description ex.: admin access
 - HTTP - TCP - 80 - Custom - 0.0.0.0/0, ::0, Description ex.: http access
 - On the final page click Launch and select `Choose an existing key pair` and select `DevOpsStudent` > Launch Instances
+- Go back to the instances list > choose you instance > connect > copy example into git bash
 - ### in the app instance: 
-- 
-`sudo systemctl status nginx` to check nginx status
+- `sudo apt-get update -y`
+- `sudo apt-get upgrade -y`
+- `sudo apt-get install nginx -y`
+-`sudo systemctl status nginx` to check nginx status
 - copy code from OS to AWS EC2 app with scp command
-- go into eng84_dev_env and use command below: 
+- you have to first go into folder with OS (ex.:eng84_dev_env) and use commands below: 
 - `scp -i ~/.ssh/your_pem_file -r app/ ubuntu@ip:~/app/` - to copy OS from the other folder
 - `scp -i ~/.ssh/pem_file -r ubuntu@ip~/` to copy one file
 - `scp -i ~/.ssh/pem_file -r environment/ ubuntu@ip:~/ `
@@ -154,8 +157,10 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - `wget "http://ftp.de.debian.org/debian/pool/main/d/dos2unix/dos2unix_6.0.4-1_amd64.deb"`
 - `sudo dpkg -i dos2unix_6.0.4-1_amd64.deb`
 - `dos2unix provision.sh`
-
-
+### check if the app is running correctly:
+- `cd app`, `npm start` you should see "Your app is listening on port 3000
+- if it's not you have to add another seucrity to your app,(custome TCP - 3000 - allow all)
+- in web browser: `http://54.155.241.206:3000/` , `http://54.155.241.206/fibonacci/5`
 
  - Now we have to create another Instance for database:
  - Create new Instance just like we did for the app instance( pages: Step 1 and Step 2 are the same), then on the Step 3 page make sure to set Subnet to your Private subnet
