@@ -127,7 +127,7 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - From the list of route tables, select your new route table > choose Subnet Associations > Edit Subnet Associations
 - Select your private subnet and Save  
 
- **5. Now we will create new EC2 instances:**
+ ## **5. Now we will create new EC2 instances:**
 - Go to EC2 > Instances > Instances > Launch Instances
 - From the list of AMI choose `Ubuntu Server 16.04 LTS (HMV), SSD Volume Type`
 - On the next page choose `t2 micro` and click Next
@@ -152,8 +152,7 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - `scp -i ~/.ssh/your_pem_file -r app/ ubuntu@ip:~/app/` - to copy OS from the other folder
 - `scp -i ~/.ssh/pem_file -r ubuntu@ip~/` to copy one file
 - `scp -i ~/.ssh/pem_file -r environment/ ubuntu@ip:~/ `
-### to fix permision issue for  
-### dos2unix commands
+### to fix permision issue for provision file use dos2unix commands:
 - `wget "http://ftp.de.debian.org/debian/pool/main/d/dos2unix/dos2unix_6.0.4-1_amd64.deb"`
 - `sudo dpkg -i dos2unix_6.0.4-1_amd64.deb`
 - `dos2unix provision.sh`
@@ -162,8 +161,8 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - if it's not you have to add another seucrity to your app,(custome TCP - 3000 - allow all)
 - in web browser: `http://54.155.241.206:3000/` , `http://54.155.241.206/fibonacci/5`
 
- - ### Now we have to create another Instance for database:
- - Create new Instance just like we did for the app instance( pages: Step 1 and Step 2 are the same), then on the Step 3 page make sure to set Subnet to your Private subnet
+- ### Now we have to create another Instance for database:
+- Create new Instance just like we did for the app instance( pages: Step 1 and Step 2 are the same), then on the Step 3 page make sure to set Subnet to your Private subnet
 - Pages for Step 4 and 5 exactly the same as for app, only change the tag name to ex.: `eng84_ula_db`
 - On the Step 6 page: Security Group Name: ex.: `eng84_ula_private_sg`, SSH the same, but the other one has to be Type: All traffic - Protocol:All - Port:0-65535 - Source:Custom with IP:(your public subnet IPv4) ex.:`66.66.1.0/24` - Description: Access from the public subnet
 - ### in the db instance:
@@ -177,8 +176,9 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - `sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf`
 - `sudo systemctl enable mongod`
 - `sudo service mongod start`
-- ### in the app instance: 
+- add in aws db instnace security group> custom tcp > port:27017
 
+- ### in the app instance: 
 - `sudo echo "export DB_HOST=mongodb://172.31.43.243:27017/posts" >> ~/.bashrc` 
 - `source ~/.bashrc `
 - `cat ~/.bashrc     ` to check 
