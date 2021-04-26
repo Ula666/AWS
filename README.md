@@ -141,6 +141,22 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - Firstly The SSH must be set to TCP, port: 22, Source: My IP, description ex.: admin access
 - HTTP - TCP - 80 - Custom - 0.0.0.0/0, ::0, Description ex.: http access
 - On the final page click Launch and select `Choose an existing key pair` and select `DevOpsStudent` > Launch Instances
+- ### in the app instance: 
+- 
+`sudo systemctl status nginx` to check nginx status
+- copy code from OS to AWS EC2 app with scp command
+- go into eng84_dev_env and use command below: 
+- `scp -i ~/.ssh/your_pem_file -r app/ ubuntu@ip:~/app/` - to copy OS from the other folder
+- `scp -i ~/.ssh/pem_file -r ubuntu@ip~/` to copy one file
+- `scp -i ~/.ssh/pem_file -r environment/ ubuntu@ip:~/ `
+### to fix permision issue for  
+### dos2unix commands
+- `wget "http://ftp.de.debian.org/debian/pool/main/d/dos2unix/dos2unix_6.0.4-1_amd64.deb"`
+- `sudo dpkg -i dos2unix_6.0.4-1_amd64.deb`
+- `dos2unix provision.sh`
+
+
+
  - Now we have to create another Instance for database:
  - Create new Instance just like we did for the app instance( pages: Step 1 and Step 2 are the same), then on the Step 3 page make sure to set Subnet to your Private subnet
 - Pages for Step 4 and 5 exactly the same as for app, only change the tag name to ex.: `eng84_ula_db`
