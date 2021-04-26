@@ -178,8 +178,8 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - `sudo systemctl enable mongod`
 - `sudo service mongod start`
 - ### in the app instance: 
-- `sudo echo "export DB_HOST://172.31.43.243:27017/posts" >> ~/.bashrc` add in app instance
-- ` sudo echo "export DB_HOST=mongodb://172.31.43.243:27017/posts" >> ~/.bashrc` 
+
+- `sudo echo "export DB_HOST=mongodb://172.31.43.243:27017/posts" >> ~/.bashrc` 
 - `source ~/.bashrc `
 - `cat ~/.bashrc     ` to check 
 
