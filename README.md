@@ -162,11 +162,31 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - if it's not you have to add another seucrity to your app,(custome TCP - 3000 - allow all)
 - in web browser: `http://54.155.241.206:3000/` , `http://54.155.241.206/fibonacci/5`
 
- - Now we have to create another Instance for database:
+ - ### Now we have to create another Instance for database:
  - Create new Instance just like we did for the app instance( pages: Step 1 and Step 2 are the same), then on the Step 3 page make sure to set Subnet to your Private subnet
 - Pages for Step 4 and 5 exactly the same as for app, only change the tag name to ex.: `eng84_ula_db`
 - On the Step 6 page: Security Group Name: ex.: `eng84_ula_private_sg`, SSH the same, but the other one has to be Type: All traffic - Protocol:All - Port:0-65535 - Source:Custom with IP:(your public subnet IPv4) ex.:`66.66.1.0/24` - Description: Access from the public subnet
+- ### in the db instance:
+- `wget -qO - https://www.mongodb.org/static/pgp/server-3.2.asc | sudo apt-key add -`
+- `echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list`
+- `sudo apt-get update`
+- `sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20`
+
+- `sudo mkdir -p /data/db`
+- `sudo chown -R mongodb:mongodb /var/lib/mongodb`
+- `sudo sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf`
+- `sudo systemctl enable mongod`
+- `sudo service mongod start`
+- ### in the app instance: 
+- `sudo echo "export DB_HOST://172.31.43.243:27017/posts" >> ~/.bashrc` add in app instance
+- ` sudo echo "export DB_HOST=mongodb://172.31.43.243:27017/posts" >> ~/.bashrc` 
+- `source ~/.bashrc `
+- `cat ~/.bashrc     ` to check 
+
+- `cd app`, `cd seeds`, `node seed.js`
+- go back to app and `npm start` to check the `ip/posts` page in web browser search bar
 - Next steps are exactly the same as for the app  
+- 
 
  **6. Test the connection:**
  - Now we have to connect to the app
