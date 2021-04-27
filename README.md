@@ -206,7 +206,7 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - add in aws db instnace security group> custom tcp > port:27017
 
 - ### in the app instance: 
-- `sudo echo "export DB_HOST=mongodb://172.31.43.243:27017/posts" >> ~/.bashrc` 
+- `sudo echo "export DB_HOST=mongodb://privateIPofDB:27017/posts" >> ~/.bashrc` 
 - `source ~/.bashrc `
 - `cat ~/.bashrc     ` to check 
 
