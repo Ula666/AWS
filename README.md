@@ -41,14 +41,27 @@
 - Benefits: One of the main benefits of AWS EC2 is its elastic load balancing. This automatically distributes incoming application traffic across several instances, while also identifying unhealthy instances and rerouting traffic to the healthy versions until restored. 
 
 ### Security Group
-- It works as a firewall for this instance (for ex. app)
+- It works as a firewall for this instance (for ex. app). Enables to specify the port range
+- works on the instance level
+- they are attached to your VPC and subnet
+- they have inbound and outbound traffic rules deffined 
+- security groups are stateful if you allowd inbound rule that will automatically be allowed outbound
 
 ### What is subnet?
-- can have multiple instances
+- subnet can have multiple EC2 instances
 - is a logical subdivision of an IP network.: 1,16 The practice of dividing a network into two or more networks is called subnetting. Computers that belong to the same subnet are addressed with an identical most-significant bit-group in their IP. Perfect for security
+- make network more efficient 
+- A range og IP addresses in your VPC
+
 
 ### VPC
-- Virtual private Cloud - A VPC gives an enterprise the ability to define and control a virtual network that is logically isolated from all other public cloud tenants, creating a private, secure place on the public cloud.
+- Virtual private Cloud gives the ability to define and control a virtual network that is logically isolated from all other public cloud tenants, creating a private, secure place on the public cloud. Enables you to launch AWS resources into a virtual network that you've.
+- it allows to have different EC2 on the same network and interact with each other, we can also create multiple subnets with our VPC
+- it benefits us with scalability of infranstructure of AWS
+
+### Route table
+- used to determine where external network traffic is directed 
+- is a set of rules called routes
 
 ### Awailablity zones:
 - https://aws.amazon.com/about-aws/global-infrastructure/regions_az/
@@ -82,7 +95,21 @@
 - Adv: improves data integrity, It offers higher level of security as client does not have access to the database directly.
 
 ### NACL (Network Access Control List)
+- stateless, becuase you have to have rules to allow request to come in and to allow the response to go back out
 - Extra level of security. Is an additional layer of security for your VPC that acts as a firewall for controlling traffic in and out of one or more subnets.
+- work at the network/subnet level
+
+### Ephemeral ports
+- short-lived ports
+- automatically allocated ports based on the demand
+- allow outbound responses to cliet on the internet
+- port range 1024 -65535
+- can also be called Dynamic Ports
+
+
+### Internet gateway
+- is the point which allow us to connect to Internet/Let's your subnet connect to Internet
+- gateway that you attach to your VPC to enable communication between resourcses in your VPC and the internet
 
 ### AMI
 -  Provides information to launch instance needs to work after security
