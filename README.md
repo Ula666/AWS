@@ -113,6 +113,9 @@
 
 ### AMI
 -  Provides information to launch instance needs to work after security
+![image](https://user-images.githubusercontent.com/47173937/116391351-f5b5a080-a816-11eb-9d89-0c4ed7d4daf0.png)
+
+
 
  ![image](https://user-images.githubusercontent.com/47173937/115889962-5b3b1300-a44c-11eb-8b32-54b8ad967f68.png)
 
