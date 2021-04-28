@@ -262,3 +262,20 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
  - port 27017 from public subnet
  - ssh from my/your ip
 
+
+
+### What is s3:
+- simple storage service provided by AWS, at anytime from around the world  it's used to store and retrieve any amount of data, it's store evrything in form of buckets
+- we can also host our static website on S3
+
+
+
+
+
+
+- we need running EC2 to shh into the instance and AWS access and secret
+- Create a bucket from AWSCLI
+- upload data
+- download data
+- delete data
+- permissions of the bucket
