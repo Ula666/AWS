@@ -266,8 +266,34 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
  - ssh from my/your ip
 
 
+### Create a bastion server:
+1. Create a public subnet called Bastion
+2. Create a new Ubuntu instance (add Bastion subnet and create security group with rule as SSH and  choose your IP)
+3. Add access to DB/APP  
+- After that we have to make configuration on our machine:
+ - On the `~/.ssh` ( `cd ~/.ssh`) directory, execute `ssh-agent bash`
+- Execute `ssh-add pem_file`
+- Execute `ssh -A ubuntu@bastion_public_ip` to SSH into the bastion server (instance). NOTE: using this method of SSH will allow you to SSH into the app and database. The regular SSH method won't allow this.
+- you need to do it each time you open a new GitBash window.
+- Inside the bastion server, we need to add a config file in the `~/.ssh` directory:
 
-### What is s3:
+- Execute `cd ~/.ssh`
+- Execute `nano config`
+- Copy and paste the following contents and adjust where applicable:
+`Host db
+  Hostname db_private_ip
+  User ubuntu
+  Port 22
+Host app
+  Hostname app_private_ip
+  User ubuntu
+  Port 22`
+- Now, you can SSH into the app and database with `ssh app` and `ssh db`.
+- Type `exit` on the host machine to stop processes.
+
+
+
+## What is s3:
 - simple storage service provided by AWS, at anytime from around the world  it's used to store and retrieve any amount of data, it's store evrything in form of buckets
 - we can also host our static website on S3
 
