@@ -282,3 +282,24 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
 - download data
 - delete data
 - permissions of the bucket
+
+
+- in oreder to have AWSCLI we need to install the required dependecies: 
+- python
+- pip
+- configure the AWSCLI with AWS keys to authenticate the access from our machine to s3
+- `sudo apt-get install python` to install Python
+- `sudo apt-get install awscli` to install AWSCLI
+- `aws configure` to configure the s3
+- we had to add access key ID and secret access key, then the region and input format(json)
+- `aws s3 ls` to check whats available in s3
+- `aws s3 mb s3://eng84ulas3 --region eu-west-1` to create the bucket
+- `aws s3 cp README.md s3://eng84ulas3 ` to copy readme file to s3
+- to add perimssions: go to bucket > choose your bucket > file > permission > edit permissions > allow all and save
+- `rm README.md ` to delete a file
+- `aws s3 sync s3://eng84ulas3 README.md` to download a file from a bucket
+- `aws s3 rm s3://eng84ulas3/README.md` to remove a file
+- `aws s3 rb s3://eng84ulas3` to remove a bucket
+- `aws s3 rb s3://eng84ulas3 --force` to delete the bucket and everything inside 
+
+
