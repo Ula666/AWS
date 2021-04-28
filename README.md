@@ -45,7 +45,7 @@
 - works on the instance level
 - they are attached to your VPC and subnet
 - they have inbound and outbound traffic rules deffined 
-- security groups are stateful if you allowd inbound rule that will automatically be allowed outbound
+- security groups are stateful if you allowed inbound rule that will automatically be allowed outbound
 
 ### What is subnet?
 - subnet can have multiple EC2 instances
@@ -247,10 +247,18 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
  - set up all things you need for your db, then change back those settings restart the db instance  
 
 **8. Add NACL:**
-- 
+- **NACL inbound rules**
+- 100 allows inbound HTTP 80 traffic from any IPv4 address
+- 110 allows inbound SSH 22 traffic from your netwok over the internet
+- 120 allows inbound return traffic from hosts on the internet that are responding to requests origininating in the subnet - TCP 1024 - 65535
 
+- **NACL outbound rules**
+- 100 allow on port 80 
+- 110 we need the CIDR block(10.0.2.0) and allow 27017 for outbound access to our mongo DB server and private subnet
+- 120 allow short lived ports 1024 - 65535
 
-
-
-
+ - private NACL:
+ - inbound
+ - port 27017 from public subnet
+ - ssh from my/your ip
 
