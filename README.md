@@ -1,7 +1,11 @@
 
 - [Cloud computing](#cloud-computing)
 - [AWS](#aws)
-- [AWS Task](aws-task)
+- [Architecture](#architecture)
+- [EC2](#ec2)
+- [Security Group](#security-group)
+- [VPC](#vpc)
+- [AWS Task](#aws-task)
 - [Bastion server](#create-a-bastion-server)
 
 
@@ -43,6 +47,25 @@
 - security group works on instance level
 - example: Eng84_ula_app_sg
 
+***
+## Architecture  
+### Monolithic Architecture
+- Monolith means composed all in one piece. The Monolithic application describes a single-tiered software application in which different components combined into a single program from a single platform.
+
+### 2 tier architecture
+- It is Client Server Architecture.
+- There is direct communication between entities.
+- It is divided into two parts viz. client application (known as client tier) and database (known as data tier).
+- Adv: easy to maintain, modification is easy
+- Disadv: very cost effective
+
+### 3 tier architecture
+- It is used in web based applications.
+- It has three layers viz. client layer, business layer and data layer.
+- Adv: improves data integrity, It offers higher level of security as client does not have access to the database directly.
+
+***
+
 ### ec2
 - Amazon Elastic Compute Cloud (EC2) is a part of Amazon's cloud-computing platform, Amazon Web Services (AWS), that allows users to rent virtual computers on which to run their own computer applications.  
 - Benefits: One of the main benefits of AWS EC2 is its elastic load balancing. This automatically distributes incoming application traffic across several instances, while also identifying unhealthy instances and rerouting traffic to the healthy versions until restored. 
@@ -59,7 +82,6 @@
 - is a logical subdivision of an IP network.: 1,16 The practice of dividing a network into two or more networks is called subnetting. Computers that belong to the same subnet are addressed with an identical most-significant bit-group in their IP. Perfect for security
 - make network more efficient 
 - A range og IP addresses in your VPC
-
 
 ### VPC
 - Virtual private Cloud gives the ability to define and control a virtual network that is logically isolated from all other public cloud tenants, creating a private, secure place on the public cloud. Enables you to launch AWS resources into a virtual network that you've.
@@ -84,22 +106,8 @@
 - Redundancy: Ensuring that critical system components have another identical component with the same data can take over in case of failure.
 - Monitoring: Identifying problems in production systems that may disrupt or degrade service.
 - Failover: The ability to switch from an active system component to a redundant component in case of failure, imminent failure, degraded performance, or functionality.
-- Failback: The ability to switch back from a redundant component 
+- Failback: The ability to switch back from a redundant component   
 
-### Monolithic Architecture
-- Monolith means composed all in one piece. The Monolithic application describes a single-tiered software application in which different components combined into a single program from a single platform.
-
-### 2 tier architecture
-- It is Client Server Architecture.
-- There is direct communication between entities.
-- It is divided into two parts viz. client application (known as client tier) and database (known as data tier).
-- Adv: easy to maintain, modification is easy
-- Disadv: very cost effective
-
-### 3 tier architecture
-- It is used in web based applications.
-- It has three layers viz. client layer, business layer and data layer.
-- Adv: improves data integrity, It offers higher level of security as client does not have access to the database directly.
 
 ### NACL (Network Access Control List)
 - stateless, becuase you have to have rules to allow request to come in and to allow the response to go back out
@@ -133,7 +141,8 @@
 
 ***
 
-# AWS Task (Two tier architecture deployment):
+# AWS Task
+- (Two tier architecture deployment)
  **1. Create VPC:**
  - In AWS > VPC > Create VPC
  - VPC Settings: name- ex.:eng84_ula_vpc, ipv4- ex.:(`66.66.0.0/16` - first two numbers supposed to be unique, and then two next are 0s)   
