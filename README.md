@@ -1,5 +1,12 @@
 
-### What is cloud computing
+- [Cloud computing](#cloud-computing)
+- [AWS](#aws)
+- [AWS Task](aws-task)
+- [Bastion server](#create-a-bastion-server)
+
+
+
+### Cloud computing
 - The cloud computing are services that are accessed over the internet. Cloud servers are located inside data centers around the world and allow for on-demand availability of computer system resources, especially data storage and computing power, without direct active management by the user.  
 ### 3 benefits
 - Cost saving is one of the biggest Cloud Computing benefits. It helps you to save money as it does not need any physical hardware investments.
@@ -8,8 +15,8 @@
 ### best use cases/who is using it in the industry .
 - AWS, Microsoft Azure, Google Cloud Platform
 - Website Hosting – This is one of the most common business-oriented uses of cloud computing. While companies can host their web presences on physical servers or single cloud servers, the true scale and ability to grow comes when these business start enabling transactions or other web-based services within their hosted environments.
-
-### What is AWS
+***
+### AWS
 - Amazon Web Services (AWS) is a cloud service provider. AWS offers a wide range of cloud services, from basic hosting and deployment to analytics, blockchain, machine learning, and more. 
 ### 3 advantages of AWS/who is using AWS in the industry (Netflix, Twitch, LinkedIn, Facebook)
 - Flexible : AWS enables you to select the operating system, programming language, web application platform, database, and other services you need. With AWS, you receive a virtual environment that lets you load the software and services your application requires. 
@@ -124,7 +131,7 @@
 - Security groups are stateful. This means that if they allow a request to come in they will always lets the response back out. Even if the outbound rules don't allow it. The outbound rules only apply to request made FROM your machine.
 - NACLs are stateless. You have to have rules to allow the request to come in and to allow the response to go back out.
 
-
+***
 
 # AWS Task (Two tier architecture deployment):
  **1. Create VPC:**
@@ -265,6 +272,7 @@ The first 2 numbers of this subnet must be the same as VPC's, the third number m
  - port 27017 from public subnet
  - ssh from my/your ip
 
+***
 
 ### Create a bastion server:
 1. Create a public subnet called Bastion
