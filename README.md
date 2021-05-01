@@ -8,6 +8,7 @@
 - [AWS Task](#aws-task)
 - [Bastion server](#create-a-bastion-server)
 - [S3](#what-is-s3)
+- [BOTO3](#boto3-task)
 
 
 
@@ -346,4 +347,29 @@ Host app
 - `aws s3 rb s3://eng84ulas3` to remove a bucket
 - `aws s3 rb s3://eng84ulas3 --force` to delete the bucket and everything inside 
 
+
+
+### Boto3 task:
+
+- To create a s3 bucket:
+- `import boto3`
+- `s3.create_bucket(Bucket="eng84-ula-new", CreateBucketConfiguration={"LocationConstraint":"eu-west-1"})`
+- 
+
+
+- To upload the "text.txt" file to our s3 bucket:
+- `python`
+- `import boto3`
+- `s3 = boto3.client('s3')`
+- `filename = "text.txt"`
+- `buket_name = "eng84-ula-neww"`
+- `s3.upload_file(filename, bucket_name, filename)`
+
+- To delete the file have been uploaded:
+- `s3 = boto3.client('s3')`
+- `s3.delete_object(Bucket="eng84-ula-neww", Key="text.txt")
+
+- To delete the bucket (need to be empty):
+- `bucket = s3.Bucket("eng84-ula-neww")
+- `response = bucket.delete()`
 
