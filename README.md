@@ -351,13 +351,11 @@ Host app
 
 ### Boto3 task:
 
-- To create a s3 bucket:
+1.To create a s3 bucket:
 - `import boto3`
 - `s3.create_bucket(Bucket="eng84-ula-new", CreateBucketConfiguration={"LocationConstraint":"eu-west-1"})`
-- 
 
-
-- To upload the "text.txt" file to our s3 bucket:
+2.To upload the "text.txt" file to our s3 bucket:
 - `python`
 - `import boto3`
 - `s3 = boto3.client('s3')`
@@ -365,11 +363,17 @@ Host app
 - `buket_name = "eng84-ula-neww"`
 - `s3.upload_file(filename, bucket_name, filename)`
 
-- To delete the file have been uploaded:
+3.To delete the file have been uploaded:
 - `s3 = boto3.client('s3')`
 - `s3.delete_object(Bucket="eng84-ula-neww", Key="text.txt")
 
-- To delete the bucket (need to be empty):
+4.To download a file from our bucket:
+- `bucket = "eng84-ula-neww"
+- `file_name = "text.txt"`
+- `downloaded_file = "text.txt"
+- `service.Bucket(bucket).download_file(file_name, downloaded_file)`
+
+5.To delete the bucket (need to be empty):
 - `bucket = s3.Bucket("eng84-ula-neww")
 - `response = bucket.delete()`
 
